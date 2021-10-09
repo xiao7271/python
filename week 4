@@ -1,0 +1,453 @@
+# Author:xiaoxiao
+# time:0929-week04
+
+# 模拟数据库
+user_date = "xiao"
+user_date_vip = "youge"
+password_date = "xx0511"
+password_date_vip = "gege1234"
+
+count = 3
+while True:
+    count -=1
+
+# 用户输入数据 vs 数据库数据
+    username = input("请输入您的账号:")
+    password = input("请输入您的密码:")
+
+# 1、判断账号
+    if username == user_date or user_date_vip:
+        if username == user_date:
+            if password == password_date:
+                print("欢迎普通用户", username, "登录系统使用~")
+                break
+            else:
+                if count == 0:
+                    print("您都输入三次了，还不对，傻猪猪~~休息会吧，请5分钟再重试")
+                    break
+                else:
+                    print("您输入的账号或密码不正确，请重新输入，您还有",count,"次机会哦~加油~")
+
+        if username == user_date_vip:
+            if password == password_date_vip:
+                print("欢迎尊贵的vip用户",username,"登录系统使用~")
+                break
+            else:
+                if count == 0:
+                    print("您都输入三次了，还不对，傻猪猪~~休息会吧，请5分钟再重试")
+                    break
+                else:
+                    print("您输入的账号或密码不正确，请重新输入，您还有",count,"次机会哦~加油~")
+
+# 普通用户查询
+if username == user_date:
+    if password == password_date:
+        print("普通用户",username,"您今天有5次查询课表的机会")
+        print("您可以通过输入日期查询该日课程，也可以输入当前实际时间查询实际时间之后的课程")
+# 课程表系统
+    import datetime
+    if username == user_date:
+        count = 5
+        while True:
+            count -= 1
+            print("选择日期查询请输入D，选择实际时间查询请输入T")
+            choose = input("请输入：")
+# 按日期查询课表
+            if choose == "D" :
+                Y = "2021"
+                M = input("请输入月份：")
+                D = input("请输入日期：")
+                date_true = Y + M + D
+                week = datetime.datetime.strptime(date_true,"%Y%m%d").weekday() + 1
+
+                this_date = int(week)
+                if this_date == 1:
+                    print("没有课的一天~美美休息")
+                    print("您今天还有",count,"次机会查询课表")
+                if this_date == 2:
+                    print("第12-14节 18:45-20:55 创业基础（实践）李顺萍  @1-205")
+                    print("您今天还有", count, "次机会查询课表")
+                if this_date == 3:
+                    print("第1-2节 8:00-9:30 毛概（实践）张锦标  @9-207")
+                    print("第4-5节 10:35-12:00 户外体育游戏 赵培刚  @西体东面")
+                    print("第12-13节 18:45-20:10 大英（三）b1班 邓小艳  @10-205")
+                    print("您今天还有", count, "次机会查询课表")
+                if this_date == 4:
+                    print("第3-5节 9:45-12:00 python语言 许智超  @新综合楼612")
+                    print("第8-9节 14:30-15:55 广告文案写作 罗希  @1-303")
+                    print("第12-14节 18:45-20:55 毛概 张锦标  @9-201")
+                    print("您今天还有", count, "次机会查询课表")
+                if this_date == 5:
+                    print("第3-5节 9:45-12:00 网站运营与管理 胡美香  @3实304")
+                    print("第8-9节 14:30-15:55 大英（三）b1班 邓小艳  @10-205")
+                    print("您今天还有", count, "次机会查询课表")
+                if this_date == 6:
+                    print("美美周末")
+                    print("您今天还有", count, "次机会查询课表")
+                if this_date == 7:
+                    print("美美周末")
+                    print("您今天还有", count, "次机会查询课表")
+
+                if count == 0:
+                    print("您今天的查询次数已经用完，请明天再试~")
+                    break
+# 按照实际时间查询
+            if choose == "T":
+                Y = "2021"
+                M = input("请输入月份：")
+                D = input("请输入日期：")
+                H = input("请输入时(24时制)：")
+                N = input("请输入分：")
+                date_true = Y + M + D
+                this_time = datetime.time(int(H),int(N),00)
+                print(this_time)
+                week = datetime.datetime.strptime(date_true,"%Y%m%d").weekday() + 1
+
+                this_date = int(week)
+                time1 = datetime.time(00,00,00)
+                time2 = datetime.time(8,00,00)
+                time3 = datetime.time(9,30,00)
+                time4 = datetime.time(9,45,00)
+                time5 = datetime.time(10,35,00)
+                time6 = datetime.time(12,00,00)
+                time7 = datetime.time(14,30,00)
+                time8 = datetime.time(15,55,00)
+                time9 = datetime.time(18,45,00)
+                time10 = datetime.time(20,10,00)
+                time11 = datetime.time(20,55,00)
+                time12 = datetime.time(23,59,00)
+
+                if this_date == 1:
+                    print("没课的一天~美美休息")
+                    print("您今日还有", count,"次机会查询课表")
+                if this_date == 2:
+                    if time1 < this_time < time9:
+                        print("接下来的课有")
+                        print("第12-14节 18:45-20:55 创业基础（实践） 李顺萍  @1-205")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time9 < this_time < time11:
+                        print("正在上创业基础（实践），认真听课啦！")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time11 < this_time < time12:
+                        print("今天的课都上完啦！")
+                        print("明天的课有")
+                        print("第1-2节 8:00-9:30 毛概（实践）张锦标  @9-207")
+                        print("第4-5节 10:35-12:00 户外体育游戏 赵培刚  @西体东面")
+                        print("第12-13节 18:45-20:10 大英（三）b1班  @10-205")
+                        print("不要玩了！早点睡觉啦！")
+                        print("您今日还有", count, "次机会查询课表")
+                if this_date == 3:
+                    if time1 < this_time < time2:
+                        print("接下来的课有")
+                        print("第1-2节 8:00-9:30 毛概（实践） 张锦标  @9-207")
+                        print("第4-5节 10:35-12:00 户外体育游戏 赵培刚  @西体东面")
+                        print("第12-13节 18:45-20:10 大英（三）b1班  @10-205")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time2 < this_time < time3:
+                        print("正在上毛概（实践），认真听课啦！")
+                        print("接下来的课有")
+                        print("第4-5节 10:35-12:00 户外体育游戏 赵培刚  @西体东面")
+                        print("第12-13节 18:45-20:10 大英（三）b1班  @10-205")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time3 < this_time < time5:
+                        print("接下来的课有")
+                        print("第4-5节 10:35-12:00 户外体育游戏 赵培刚  @西体东面")
+                        print("第12-13节 18:45-20:10 大英（三）b1班  @10-205")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time5 < this_time < time6:
+                        print("正在上户外体育游戏，认真听课啦！")
+                        print("接下来的课有")
+                        print("第12-13节 18:45-20:10 大英（三）b1班  @10-205")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time6 < this_time < time9:
+                        print("接下来的课有")
+                        print("第12-13节 18:45-20:10 大英（三）b1班  @10-205")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time9 < this_time < time10:
+                        print("正在上大英（三）b1班，认真听课啦！")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time10 < this_time < time12:
+                        print("今天的课都上完啦！")
+                        print("明天的课有")
+                        print("第1-2节 8:00-9:30 毛概（实践）张锦标  @9-207")
+                        print("第4-5节 10:35-12:00 户外体育游戏 赵培刚  @西体东面")
+                        print("第12-13节 18:45-20:10 大英（三）b1班 邓小艳  @10-205")
+                        print("不要玩了！早点睡觉啦！")
+                        print("您今日还有", count, "次机会查询课表")
+                if this_date == 4:
+                    if time1 < this_time < time4:
+                        print("接下来的课有")
+                        print("第3-5节 9:45-12:00 python语言 许智超  @新综合楼612")
+                        print("第8-9节 14:30-15:55 广告文案写作 罗希  @1-303")
+                        print("第12-14节 18:45-20:55 毛概 张锦标  @9-201")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time4 < this_time < time6:
+                        print("正在上python语言，认真听课啦！")
+                        print("接下来的课有")
+                        print("第8-9节 14:30-15:55 广告文案写作 罗希  @1-303")
+                        print("第12-14节 18:45-20:55 毛概 张锦标  @9-201")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time6 < this_time < time7:
+                        print("接下来的课有")
+                        print("第8-9节 14:30-15:55 广告文案写作 罗希  @1-303")
+                        print("第12-14节 18:45-20:55 毛概 张锦标  @9-201")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time7 < this_time < time8:
+                        print("正在上广告文案写作，认真听课啦！")
+                        print("接下来的课有")
+                        print("第12-14节 18:45-20:55 毛概 张锦标  @9-201")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time8 < this_time < time9:
+                        print("接下来的课有")
+                        print("第12-14节 18:45-20:55 毛概 张锦标  @9-201")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time9 < this_time < time11:
+                        print("正在上毛概，认真听课啦！")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time11 < this_time < time12:
+                        print("今天的课都上完啦！")
+                        print("明天的课有")
+                        print("第3-5节 9:45-12:00 网站运营与管理 胡美香  @3实304")
+                        print("第8-9节 14:30-15:55 大英（三）b1班 邓小艳  @10-205")
+                        print("不要玩了！早点睡觉啦！")
+                        print("您今日还有", count, "次机会查询课表")
+                if this_date == 5:
+                    if time1 < this_time < time4:
+                        print("接下来的课有")
+                        print("第3-5节 9:45-12:00 网站运营与管理 胡美香  @3实304")
+                        print("第8-9节 14:30-15:55 大英（三）b1班 邓小艳  @10-205")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time4 < this_time < time6:
+                        print("正在上网站运营与管理，认真听课啦！")
+                        print("接下来的课有")
+                        print("第8-9节 14:30-15:55 大英（三）b1班 邓小艳  @10-205")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time6 < this_time < time7:
+                        print("接下来的课有")
+                        print("第8-9节 14:30-15:55 大英（三）b1班 邓小艳  @10-205")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time7 < this_time < time8:
+                        print("正在上大英（三）b1班，认真听课啦！")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time8 < this_time < time12:
+                        print("今天的课都上完啦！")
+                        print("明天就是周末啦！好好休息，记得完成作业哦！")
+                        print("您今日还有", count, "次机会查询课表")
+                if this_date == 6:
+                    print("美美周末")
+                    print("您今日还有", count, "次机会查询课表")
+                if this_date == 7:
+                    print("美美周末")
+                    print("您今日还有", count, "次机会查询课表")
+
+            if count == 0:
+                print("您今天的查询次数已经用完，请明天再试~")
+                break
+
+# vip用户查询
+if username == user_date_vip:
+    if password == password_date_vip:
+        print("尊贵的vip用户",username,"您今天有10次查询课表的机会")
+        print("您可以通过输入日期查询该日课程，也可以输入当前实际时间查询实际时间之后的课程")
+# 课程表系统
+    import datetime
+    if username == user_date_vip:
+        count = 10
+        while True:
+            count -= 1
+            print("选择日期查询请输入D，选择实际时间查询请输入T")
+            choose = input("请输入：")
+# 按日期查询
+            if choose == "D" :
+                Y = "2021"
+                M = input("请输入月份：")
+                D = input("请输入日期：")
+                date_true = Y + M + D
+                week = datetime.datetime.strptime(date_true,"%Y%m%d").weekday() + 1
+
+                this_date = int(week)
+                if this_date == 1:
+                    print("没有课的一天~美美休息")
+                    print("您今天还有",count,"次机会查询课表")
+                if this_date == 2:
+                    print("第12-14节 18:45-20:55 创业基础（实践）李顺萍  @1-205")
+                    print("您今天还有", count, "次机会查询课表")
+                if this_date == 3:
+                    print("第1-2节 8:00-9:30 毛概（实践）张锦标  @9-207")
+                    print("第4-5节 10:35-12:00 户外体育游戏 赵培刚  @西体东面")
+                    print("第12-13节 18:45-20:10 大英（三）b1班 邓小艳  @10-205")
+                    print("您今天还有", count, "次机会查询课表")
+                if this_date == 4:
+                    print("第3-5节 9:45-12:00 python语言 许智超  @新综合楼612")
+                    print("第8-9节 14:30-15:55 广告文案写作 罗希  @1-303")
+                    print("第12-14节 18:45-20:55 毛概 张锦标  @9-201")
+                    print("您今天还有", count, "次机会查询课表")
+                if this_date == 5:
+                    print("第3-5节 9:45-12:00 网站运营与管理 胡美香  @3实304")
+                    print("第8-9节 14:30-15:55 大英（三）b1班 邓小艳  @10-205")
+                    print("您今天还有", count, "次机会查询课表")
+                if this_date == 6:
+                    print("美美周末")
+                    print("您今天还有", count, "次机会查询课表")
+                if this_date == 7:
+                    print("美美周末")
+                    print("您今天还有", count, "次机会查询课表")
+
+                if count == 0:
+                    print("您今天的查询次数已经用完，请明天再试~")
+                    break
+# 按实际时间查询
+            if choose == "T":
+                Y = "2021"
+                M = input("请输入月份：")
+                D = input("请输入日期：")
+                H = input("请输入时(24时制)：")
+                N = input("请输入分：")
+                date_true = Y + M + D
+                this_time = datetime.time(int(H),int(N),00)
+                print(this_time)
+                week = datetime.datetime.strptime(date_true,"%Y%m%d").weekday() + 1
+
+                this_date = int(week)
+                time1 = datetime.time(00,00,00)
+                time2 = datetime.time(8,00,00)
+                time3 = datetime.time(9,30,00)
+                time4 = datetime.time(9,45,00)
+                time5 = datetime.time(10,35,00)
+                time6 = datetime.time(12,00,00)
+                time7 = datetime.time(14,30,00)
+                time8 = datetime.time(15,55,00)
+                time9 = datetime.time(18,45,00)
+                time10 = datetime.time(20,10,00)
+                time11 = datetime.time(20,55,00)
+                time12 = datetime.time(23,59,00)
+
+                if this_date == 1:
+                    print("没课的一天~美美休息")
+                    print("您今日还有", count,"次机会查询课表")
+                if this_date == 2:
+                    if time1 < this_time < time9:
+                        print("接下来的课有")
+                        print("第12-14节 18:45-20:55 创业基础（实践） 李顺萍  @1-205")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time9 < this_time < time11:
+                        print("正在上创业基础（实践），认真听课啦！")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time11 < this_time < time12:
+                        print("今天的课都上完啦！")
+                        print("明天的课有")
+                        print("第1-2节 8:00-9:30 毛概（实践）张锦标  @9-207")
+                        print("第4-5节 10:35-12:00 户外体育游戏 赵培刚  @西体东面")
+                        print("第12-13节 18:45-20:10 大英（三）b1班  @10-205")
+                        print("不要玩了！早点睡觉啦！")
+                        print("您今日还有", count, "次机会查询课表")
+                if this_date == 3:
+                    if time1 < this_time < time2:
+                        print("接下来的课有")
+                        print("第1-2节 8:00-9:30 毛概（实践） 张锦标  @9-207")
+                        print("第4-5节 10:35-12:00 户外体育游戏 赵培刚  @西体东面")
+                        print("第12-13节 18:45-20:10 大英（三）b1班  @10-205")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time2 < this_time < time3:
+                        print("正在上毛概（实践），认真听课啦！")
+                        print("接下来的课有")
+                        print("第4-5节 10:35-12:00 户外体育游戏 赵培刚  @西体东面")
+                        print("第12-13节 18:45-20:10 大英（三）b1班  @10-205")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time3 < this_time < time5:
+                        print("接下来的课有")
+                        print("第4-5节 10:35-12:00 户外体育游戏 赵培刚  @西体东面")
+                        print("第12-13节 18:45-20:10 大英（三）b1班  @10-205")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time5 < this_time < time6:
+                        print("正在上户外体育游戏，认真听课啦！")
+                        print("接下来的课有")
+                        print("第12-13节 18:45-20:10 大英（三）b1班  @10-205")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time6 < this_time < time9:
+                        print("接下来的课有")
+                        print("第12-13节 18:45-20:10 大英（三）b1班  @10-205")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time9 < this_time < time10:
+                        print("正在上大英（三）b1班，认真听课啦！")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time10 < this_time < time12:
+                        print("今天的课都上完啦！")
+                        print("明天的课有")
+                        print("第1-2节 8:00-9:30 毛概（实践）张锦标  @9-207")
+                        print("第4-5节 10:35-12:00 户外体育游戏 赵培刚  @西体东面")
+                        print("第12-13节 18:45-20:10 大英（三）b1班 邓小艳  @10-205")
+                        print("不要玩了！早点睡觉啦！")
+                        print("您今日还有", count, "次机会查询课表")
+                if this_date == 4:
+                    if time1 < this_time < time4:
+                        print("接下来的课有")
+                        print("第3-5节 9:45-12:00 python语言 许智超  @新综合楼612")
+                        print("第8-9节 14:30-15:55 广告文案写作 罗希  @1-303")
+                        print("第12-14节 18:45-20:55 毛概 张锦标  @9-201")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time4 < this_time < time6:
+                        print("正在上python语言，认真听课啦！")
+                        print("接下来的课有")
+                        print("第8-9节 14:30-15:55 广告文案写作 罗希  @1-303")
+                        print("第12-14节 18:45-20:55 毛概 张锦标  @9-201")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time6 < this_time < time7:
+                        print("接下来的课有")
+                        print("第8-9节 14:30-15:55 广告文案写作 罗希  @1-303")
+                        print("第12-14节 18:45-20:55 毛概 张锦标  @9-201")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time7 < this_time < time8:
+                        print("正在上广告文案写作，认真听课啦！")
+                        print("接下来的课有")
+                        print("第12-14节 18:45-20:55 毛概 张锦标  @9-201")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time8 < this_time < time9:
+                        print("接下来的课有")
+                        print("第12-14节 18:45-20:55 毛概 张锦标  @9-201")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time9 < this_time < time11:
+                        print("正在上毛概，认真听课啦！")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time11 < this_time < time12:
+                        print("今天的课都上完啦！")
+                        print("明天的课有")
+                        print("第3-5节 9:45-12:00 网站运营与管理 胡美香  @3实304")
+                        print("第8-9节 14:30-15:55 大英（三）b1班 邓小艳  @10-205")
+                        print("不要玩了！早点睡觉啦！")
+                        print("您今日还有", count, "次机会查询课表")
+                if this_date == 5:
+                    if time1 < this_time < time4:
+                        print("接下来的课有")
+                        print("第3-5节 9:45-12:00 网站运营与管理 胡美香  @3实304")
+                        print("第8-9节 14:30-15:55 大英（三）b1班 邓小艳  @10-205")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time4 < this_time < time6:
+                        print("正在上网站运营与管理，认真听课啦！")
+                        print("接下来的课有")
+                        print("第8-9节 14:30-15:55 大英（三）b1班 邓小艳  @10-205")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time6 < this_time < time7:
+                        print("接下来的课有")
+                        print("第8-9节 14:30-15:55 大英（三）b1班 邓小艳  @10-205")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time7 < this_time < time8:
+                        print("正在上大英（三）b1班，认真听课啦！")
+                        print("您今日还有", count, "次机会查询课表")
+                    if time8 < this_time < time12:
+                        print("今天的课都上完啦！")
+                        print("明天就是周末啦！好好休息，记得完成作业哦！")
+                        print("您今日还有", count, "次机会查询课表")
+                if this_date == 6:
+                    print("美美周末")
+                    print("您今日还有", count, "次机会查询课表")
+                if this_date == 7:
+                    print("美美周末")
+                    print("您今日还有", count, "次机会查询课表")
+
+            if count == 0:
+                print("您今天的查询次数已经用完，请明天再试~")
+                break
+
+
+
